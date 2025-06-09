@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Plant_Base : MonoBehaviour
@@ -8,8 +9,8 @@ public class Plant_Base : MonoBehaviour
     GameObject indicatorUsed;
 
     public string plantName;
-    public Color originalColor;
-    public Color[] phaseColors;
+    public Sprite originalSprite;
+    public Sprite[] spritePhases;
 
     public int plantLevel;
     public int plantPhase;
@@ -24,7 +25,7 @@ public class Plant_Base : MonoBehaviour
     public int cooldown;
     public bool isReqTaken;
 
-    public int harvestYield;
+    public int produceValue;
 
     int TimePassed = 0;
 
@@ -45,7 +46,7 @@ public class Plant_Base : MonoBehaviour
     void Start()
     {
         plantPhase_String = "Seedling";
-        originalColor = GetComponent<SpriteRenderer>().color;
+        originalSprite = GetComponent<SpriteRenderer>().sprite;
     }
 
     // Update is called once per frame
@@ -85,11 +86,11 @@ public class Plant_Base : MonoBehaviour
             {
                 case 1:
                     plantPhase_String = "Premature";
-                    GetComponent<SpriteRenderer>().color = phaseColors[0];
+                    GetComponent<SpriteRenderer>().sprite = spritePhases[0];
                     break;
                 case 2:
                     plantPhase_String = "Mature";
-                    GetComponent<SpriteRenderer>().color = phaseColors[1];
+                    GetComponent<SpriteRenderer>().sprite = spritePhases[1];
                     gameObject.tag = "ReadyHarvest"; // marks an object to add functionality
                     break;
                 default:
@@ -133,13 +134,14 @@ public class Plant_Base : MonoBehaviour
     {
         plantPhase = 0;
         plantPhase_String = "Seedling";
-        GetComponent<SpriteRenderer>().color = originalColor;
+        GetComponent<SpriteRenderer>().sprite = originalSprite;
         gameObject.tag = "Untagged";
 
         print("Harvest Completed!");
 
         // gets singleton main manager in level, gets harvest count of a plant
-        Main_Manager.Instance.PlantA_HarvestCount += harvestYield;
+        Main_Manager.Instance.gameGold += produceValue;
+        TextHandler.Instance.UpdateGoldText();
     }
 
 }

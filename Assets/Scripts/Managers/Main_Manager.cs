@@ -1,19 +1,23 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
+
 public class Main_Manager : MonoBehaviour
 {
-
+    // player data
     // Plant Harvests
-    public int PlantA_HarvestCount = 0;
+    public int gameGold;
+
+
 
     // Singleton Pattern
     public static Main_Manager Instance { get; private set; }
     private void Awake()
     {
         // Preventing replication of this Manager
-        if(Instance != null)
+        if (Instance != null)
         {
             return;
         }
@@ -27,7 +31,6 @@ public class Main_Manager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -46,4 +49,5 @@ public class Main_Manager : MonoBehaviour
             
         }
     }
+
 }

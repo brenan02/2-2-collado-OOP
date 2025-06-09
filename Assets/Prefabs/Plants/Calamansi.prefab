@@ -103,10 +103,8 @@ MonoBehaviour:
   owner: {fileID: 0}
   indicator: {fileID: 5311984538351728632, guid: 90f5178f1e892c24eb255e528952682e, type: 3}
   plantName: Calamansi
-  originalColor: {r: 0, g: 0, b: 0, a: 0}
-  phaseColors:
-  - {r: 0.6415094, g: 0, b: 0.5954183, a: 1}
-  - {r: 0.28934452, g: 0, b: 0.5188679, a: 1}
+  originalSprite: {fileID: 0}
+  spritePhases: []
   plantLevel: 1
   plantPhase: 0
   plantPhase_String: 
@@ -116,5 +114,5 @@ MonoBehaviour:
   fertilizerCount: 0
   cooldown: 5
   isReqTaken: 0
-  harvestYield: 5
+  produceValue: 20
   TimeBetweenDelay: 1

@@ -17,6 +17,12 @@ public class Pot_Base : MonoBehaviour
     void Start()
     {
         // Debug
+
+        if (plantPrefab == null)
+        {
+            return;
+        }
+
         spawnPlant(plantPrefab);
     }
 
