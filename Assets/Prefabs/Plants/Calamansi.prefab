@@ -104,7 +104,9 @@ MonoBehaviour:
   indicator: {fileID: 5311984538351728632, guid: 90f5178f1e892c24eb255e528952682e, type: 3}
   plantName: Calamansi
   originalSprite: {fileID: 0}
-  spritePhases: []
+  spritePhases:
+  - {fileID: -3123501385783608471, guid: 924973df69bccfa4abe5390f8c9d0863, type: 3}
+  - {fileID: 2696969032427376449, guid: a7ac8feaa4210ea4db5b3dc382ad5d0e, type: 3}
   plantLevel: 1
   plantPhase: 0
   plantPhase_String: 

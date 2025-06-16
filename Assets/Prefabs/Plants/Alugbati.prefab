@@ -103,7 +103,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   indicator: {fileID: 5311984538351728632, guid: 90f5178f1e892c24eb255e528952682e, type: 3}
   plantName: Alugbati
-  originalSprite: {fileID: 6012749176412160325, guid: 4dc2f22f8b0c0ec449df297c976e3475, type: 3}
+  originalSprite: {fileID: -3123501385783608471, guid: 924973df69bccfa4abe5390f8c9d0863, type: 3}
   spritePhases:
   - {fileID: -3123501385783608471, guid: 924973df69bccfa4abe5390f8c9d0863, type: 3}
   - {fileID: -6202241390519635569, guid: f1cf255f44419914fa451f237d693be6, type: 3}

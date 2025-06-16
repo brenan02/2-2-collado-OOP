@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Plant_Base : MonoBehaviour
 {
-
     public Pot_Base owner;
     public GameObject indicator;
     GameObject indicatorUsed;
@@ -29,27 +28,51 @@ public class Plant_Base : MonoBehaviour
 
     int TimePassed = 0;
 
-
-
     // Timer
     public float TimeBetweenDelay;
     float NextTimeDelay;
 
-
-
-
-
-
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         plantPhase_String = "Seedling";
         originalSprite = GetComponent<SpriteRenderer>().sprite;
+
+        // Restore plant data if available
+        RestorePlantData();
     }
 
-    // Update is called once per frame
+    private void RestorePlantData()
+    {
+        if (Main_Manager.Instance != null && owner != null)
+        {
+            PlantData data = Main_Manager.Instance.GetPlantData(owner.potID);
+            if (data != null)
+            {
+                // Restore plant state
+                plantName = data.plantName;
+                plantLevel = data.plantLevel;
+                plantPhase = data.plantPhase;
+                plantPhase_String = data.plantPhase_String;
+                waterCount = data.waterCount;
+                fertilizerCount = data.fertilizerCount;
+                isReqTaken = data.isReqTaken;
+
+                // Update sprite based on phase
+                if (plantPhase > 0 && spritePhases != null && spritePhases.Length > 0)
+                {
+                    int spriteIndex = Mathf.Min(plantPhase - 1, spritePhases.Length - 1);
+                    GetComponent<SpriteRenderer>().sprite = spritePhases[spriteIndex];
+                }
+
+                // Update tag if plant is ready for harvest
+                if (plantPhase >= 2)
+                {
+                    gameObject.tag = "ReadyHarvest";
+                }
+            }
+        }
+    }
+
     void Update()
     {
         // checks if plant is watered
@@ -76,7 +99,7 @@ public class Plant_Base : MonoBehaviour
 
         //TIMER
         // checks if water count meets requirement of plant
-        if(waterCount >= waterReq)
+        if (waterCount >= waterReq)
         {
             // water count reset, level up plant
             waterCount = 0;
@@ -86,7 +109,7 @@ public class Plant_Base : MonoBehaviour
             {
                 case 1:
                     plantPhase_String = "Premature";
-                    GetComponent<SpriteRenderer>().sprite = spritePhases[0];
+                    GetComponent<SpriteRenderer>().sprite = spritePhases[1];
                     break;
                 case 2:
                     plantPhase_String = "Mature";
@@ -96,23 +119,21 @@ public class Plant_Base : MonoBehaviour
                 default:
                     break;
             }
- 
         }
 
         //INDICATOR
-        if(isReqTaken == false)
+        if (isReqTaken == false)
         {
-            if(indicatorUsed != null || this.CompareTag("ReadyHarvest"))
+            if (indicatorUsed != null || this.CompareTag("ReadyHarvest"))
             {
                 return;
             }
 
             Vector3 offset = new Vector3(1, 1, 0);
             Vector3 waterOffset = owner.spawnPoint.position + offset;
-            indicatorUsed = Instantiate(indicator,waterOffset, Quaternion.identity);
+            indicatorUsed = Instantiate(indicator, waterOffset, Quaternion.identity);
 
         }
-
         else
         {
             if (indicatorUsed == null)
@@ -121,14 +142,7 @@ public class Plant_Base : MonoBehaviour
             }
             Destroy(indicatorUsed);
         }
-        
-
-
-
-
-
     }
-
 
     public void Harvest()
     {
@@ -143,5 +157,4 @@ public class Plant_Base : MonoBehaviour
         Main_Manager.Instance.gameGold += produceValue;
         TextHandler.Instance.UpdateGoldText();
     }
-
 }

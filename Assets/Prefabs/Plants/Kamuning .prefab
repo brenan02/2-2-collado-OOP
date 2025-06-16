@@ -104,7 +104,9 @@ MonoBehaviour:
   indicator: {fileID: 5311984538351728632, guid: 90f5178f1e892c24eb255e528952682e, type: 3}
   plantName: 'Kamuning '
   originalSprite: {fileID: 0}
-  spritePhases: []
+  spritePhases:
+  - {fileID: 0}
+  - {fileID: 0}
   plantLevel: 1
   plantPhase: 0
   plantPhase_String: 
