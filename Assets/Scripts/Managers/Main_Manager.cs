@@ -1,24 +1,38 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
-
+[System.Serializable]
+public class PlantData
+{
+    public string plantName;
+    public int plantLevel;
+    public int plantPhase;
+    public string plantPhase_String;
+    public int waterCount;
+    public int fertilizerCount;
+    public bool isReqTaken;
+    public int potID;
+}
 
 public class Main_Manager : MonoBehaviour
 {
     // player data
-    // Plant Harvests
     public int gameGold;
 
-
+    // Plant data storage
+    private Dictionary<int, PlantData> plantDataDict = new Dictionary<int, PlantData>();
 
     // Singleton Pattern
     public static Main_Manager Instance { get; private set; }
+
     private void Awake()
     {
         // Preventing replication of this Manager
-        if (Instance != null)
+        if (Instance != null && Instance != this)
         {
+            Destroy(gameObject);
             return;
         }
 
@@ -26,28 +40,53 @@ public class Main_Manager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
     }
 
-    // Update is called once per frame
-    void Update()
+    // Called by MarketButton when switching to market scene
+    public void OnSwitchToMarket()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        StorePlantData();
+    }
+
+    // Called by BackButtonMarket when returning to plant scene
+    public void OnReturnToPlant()
+    {
+        // No need to store data when returning to plant scene
+        // The plants will restore their data when they start
+    }
+
+    public void StorePlantData()
+    {
+        plantDataDict.Clear();
+        Plant_Base[] allPlants = Object.FindObjectsByType<Plant_Base>(FindObjectsSortMode.None);
+        foreach (var plant in allPlants)
         {
-            if (SceneManager.GetActiveScene().name == "SampleScene")
+            if (plant.owner != null)
             {
-                SceneManager.LoadScene("MarketScene");
+                PlantData data = new PlantData
+                {
+                    plantName = plant.plantName,
+                    plantLevel = plant.plantLevel,
+                    plantPhase = plant.plantPhase,
+                    plantPhase_String = plant.plantPhase_String,
+                    waterCount = plant.waterCount,
+                    fertilizerCount = plant.fertilizerCount,
+                    isReqTaken = plant.isReqTaken,
+                    potID = plant.owner.potID
+                };
+                plantDataDict[plant.owner.potID] = data;
             }
-            else
-            {
-                SceneManager.LoadScene("SampleScene");
-            }
-            
         }
     }
 
+    public PlantData GetPlantData(int potID)
+    {
+        if (plantDataDict.TryGetValue(potID, out PlantData data))
+        {
+            return data;
+        }
+        return null;
+    }
 }

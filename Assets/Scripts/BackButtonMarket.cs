@@ -1,25 +1,23 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class BackButtonMarket : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
     }
-
 
     public void BackToGame()
     {
+        // Notify Main_Manager that we're returning to plant scene
+        if (Main_Manager.Instance != null)
+        {
+            Main_Manager.Instance.OnReturnToPlant();
+        }
         SceneManager.LoadScene("SampleScene");
     }
-
 }

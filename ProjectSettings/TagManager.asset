@@ -43,5 +43,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: SKY
+    uniqueID: 2373759977
+    locked: 0
+  - name: CLOUDS
+    uniqueID: 2589769251
+    locked: 0
+  - name: GRASS
+    uniqueID: 275408737
+    locked: 0
+  - name: DARKGRASS
+    uniqueID: 1392319859
+    locked: 0
+  - name: CHARACTER
+    uniqueID: 2037979829
+    locked: 0
+  - name: POTSANDPLANTS
+    uniqueID: 2957411151
+    locked: 0
   m_RenderingLayers:
   - Default

@@ -12,10 +12,12 @@ public class Pot_Base : MonoBehaviour
 
     public int potID;
 
+    private static int nextPotID = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         // Debug
 
         if (plantPrefab == null)
@@ -29,7 +31,7 @@ public class Pot_Base : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
@@ -41,7 +43,7 @@ public class Pot_Base : MonoBehaviour
         // getting plantbase component from spawned plant 
         Plant_Base plantComponent = newPlant.GetComponent<Plant_Base>();
 
-        if(plantComponent != null)
+        if (plantComponent != null)
         {
             //set the owner of the plant to this pot base, assign to specific pot
             plantComponent.owner = this;
