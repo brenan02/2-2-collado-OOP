@@ -74,15 +74,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1337556145
+  m_SortingLayer: 6
   m_SortingOrder: 2
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.90588236, g: 0.117647044, b: 0.70575124, a: 1}
+  m_Sprite: {fileID: 4546672303574443910, guid: bcb53016649ec6c4e9d2c6d1bc04a197, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.6666665, y: 4.6666665}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -103,18 +103,18 @@ MonoBehaviour:
   owner: {fileID: 0}
   indicator: {fileID: 5311984538351728632, guid: 90f5178f1e892c24eb255e528952682e, type: 3}
   plantName: Calamansi
-  originalSprite: {fileID: 0}
+  originalSprite: {fileID: 4546672303574443910, guid: bcb53016649ec6c4e9d2c6d1bc04a197, type: 3}
   spritePhases:
-  - {fileID: -3123501385783608471, guid: 924973df69bccfa4abe5390f8c9d0863, type: 3}
-  - {fileID: 2696969032427376449, guid: a7ac8feaa4210ea4db5b3dc382ad5d0e, type: 3}
+  - {fileID: -215120349365730800, guid: 86dad828d732a954e8dc339f1bac552c, type: 3}
+  - {fileID: 8218527298352684080, guid: e2835c06083bc4c418d842a5a7256a68, type: 3}
   plantLevel: 1
   plantPhase: 0
   plantPhase_String: 
-  waterReq: 6
+  waterReq: 1
   fertilizerReq: 0
   waterCount: 0
   fertilizerCount: 0
-  cooldown: 5
+  cooldown: 2
   isReqTaken: 0
   produceValue: 20
   TimeBetweenDelay: 1

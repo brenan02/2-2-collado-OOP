@@ -109,12 +109,12 @@ public class Plant_Base : MonoBehaviour
             {
                 case 1:
                     plantPhase_String = "Premature";
-                    GetComponent<SpriteRenderer>().sprite = spritePhases[1];
+                    GetComponent<SpriteRenderer>().sprite = spritePhases[0];
                     break;
                 case 2:
                     plantPhase_String = "Mature";
                     GetComponent<SpriteRenderer>().sprite = spritePhases[1];
-                    gameObject.tag = "ReadyHarvest"; // marks an object to add functionality
+                    gameObject.tag = "ReadyHarvest";
                     break;
                 default:
                     break;
@@ -129,7 +129,7 @@ public class Plant_Base : MonoBehaviour
                 return;
             }
 
-            Vector3 offset = new Vector3(1, 1, 0);
+            Vector3 offset = new Vector3(1, -1, 0);
             Vector3 waterOffset = owner.spawnPoint.position + offset;
             indicatorUsed = Instantiate(indicator, waterOffset, Quaternion.identity);
 
