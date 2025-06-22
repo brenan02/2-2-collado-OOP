@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   indicator: {fileID: 5311984538351728632, guid: 90f5178f1e892c24eb255e528952682e, type: 3}
+  harvestIndicator: {fileID: 2409043356230521887, guid: 9867a524727166c4ba973b64349697db, type: 3}
   plantName: Alugbati
   originalSprite: {fileID: 4546672303574443910, guid: bcb53016649ec6c4e9d2c6d1bc04a197, type: 3}
   spritePhases:
@@ -110,7 +111,7 @@ MonoBehaviour:
   plantLevel: 1
   plantPhase: 0
   plantPhase_String: 
-  waterReq: 1
+  waterReq: 2
   fertilizerReq: 0
   waterCount: 0
   fertilizerCount: 0
@@ -118,3 +119,4 @@ MonoBehaviour:
   isReqTaken: 0
   produceValue: 2
   TimeBetweenDelay: 1
+  defaultWaterReq: 2

@@ -16,9 +16,9 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        Debug.Log("Play button clicked! Attempting to load GARDEN scene...");
+        //Debug.Log("Play button clicked! Attempting to load GARDEN scene...");
         SceneManager.LoadScene("GARDEN");
-        Debug.Log("SceneManager.LoadScene called for GARDEN");
+        //Debug.Log("SceneManager.LoadScene called for GARDEN");
         MusicManager.Instance.PlayMusic("GardenMusic");
     }
  
