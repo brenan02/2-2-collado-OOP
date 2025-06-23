@@ -38,6 +38,19 @@ public class TextHandler : MonoBehaviour
 
     public void UpdateGoldText()
     {
+        if (textGold == null)
+        {
+            Debug.LogError("TextHandler Error: The 'Text Gold' UI element has not been assigned in the Inspector.");
+            return;
+        }
+
+        if (Main_Manager.Instance == null)
+        {
+            // This case should be handled by the PurchaseManager, but it's good to have a backup check.
+            Debug.LogError("TextHandler Error: Main_Manager instance not found.");
+            return;
+        }
+
         textGold.text = Main_Manager.Instance.gameGold.ToString() + "g";
     }
 }
