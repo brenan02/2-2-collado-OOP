@@ -7,7 +7,8 @@ public class PurchaseManager : MonoBehaviour
     public static PurchaseManager Instance { get; private set; }
 
     [Header("UI References")]
-    public TMP_Text validationText; // <-- ADDED: The text box for validation messages
+    public TMP_Text validationText; // text for validation messages
+    public GameObject validationPanel; // Assign the parent panel in Inspector
 
     [Header("Settings")]
     public float messageDisplayTime = 2f; // <-- ADDED: How long the message appears
@@ -30,7 +31,7 @@ public class PurchaseManager : MonoBehaviour
         }
     }
 
-    public void BuyPlant(int price)
+    public void BuyPlant(int price, int potIndexToUnlock)
     {
         if (Main_Manager.Instance == null)
         {
@@ -41,6 +42,7 @@ public class PurchaseManager : MonoBehaviour
         if (Main_Manager.Instance.gameGold >= price)
         {
             Main_Manager.Instance.gameGold -= price;
+            Main_Manager.Instance.UnlockPot(potIndexToUnlock); // Unlock the pot!
             Debug.Log("Plant Successfully");
             ShowMessage("Plant Successfully"); // <-- ADDED: Show success message
 
@@ -78,9 +80,12 @@ public class PurchaseManager : MonoBehaviour
         validationText.text = message;
         validationText.gameObject.SetActive(true);
 
+        validationPanel.SetActive(true);
+
         yield return new WaitForSeconds(messageDisplayTime);
 
         validationText.gameObject.SetActive(false);
+        validationPanel.SetActive(false);
     }
     // --- END OF ADDED SECTION ---
 }

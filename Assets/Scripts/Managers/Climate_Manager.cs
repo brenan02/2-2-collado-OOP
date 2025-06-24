@@ -43,6 +43,8 @@ public class Climate_Manager : MonoBehaviour
                 ClimateTMP.text = "Climate: Wet";
                 ClimateTMP.color = Color.blue;
             }
+
+            //Debug.Log("ClimateIndex: " + ClimateIndex + ", NextTimeDelay: " + NextTimeDelay + ", Time: " + Time.time);
         }
     }
 
