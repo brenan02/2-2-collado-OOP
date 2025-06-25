@@ -32,34 +32,37 @@ public class Climate_Manager : MonoBehaviour
 
             if(ClimateIndex == 0)
             {
-                SetAllPlantRequirements(5);
+                SetAllPlantRequirements(true);
                 ClimateIndex = 1;
                 ClimateTMP.text = "Climate: Dry";
+                ClimateTMP.color = Color.red;
             } else
             {
-                SetAllPlantRequirements(3);
+                SetAllPlantRequirements(false);
                 ClimateIndex = 0;
                 ClimateTMP.text = "Climate: Wet";
+                ClimateTMP.color = Color.blue;
             }
+
+            //Debug.Log("ClimateIndex: " + ClimateIndex + ", NextTimeDelay: " + NextTimeDelay + ", Time: " + Time.time);
         }
     }
 
 
-    public void SetAllPlantRequirements(int inGrowthRequirement)
+    public void SetAllPlantRequirements(bool isDry)
     {
         Plant_Base[] allPlants = FindObjectsByType<Plant_Base>(FindObjectsSortMode.None);
 
-        if (allPlants.Length >= 0)
+        foreach (var plant in allPlants)
         {
-            foreach (var plant in allPlants)
+            if (plant.plantLevel == 1)
             {
-                if (plant.plantLevel == 1)
-                {
-                    plant.waterReq = inGrowthRequirement;
-                }
+                if (isDry)
+                    plant.waterReq = plant.defaultWaterReq + 1;
+                else
+                    plant.waterReq = plant.defaultWaterReq;
             }
         }
-        
     }
 
 

@@ -27,6 +27,9 @@ public class Main_Manager : MonoBehaviour
     // Singleton Pattern
     public static Main_Manager Instance { get; private set; }
 
+    // Array to track unlocked pots: true = unlocked, false = locked
+    public bool[] potsUnlocked = new bool[5];
+
     private void Awake()
     {
         // Preventing replication of this Manager
@@ -38,6 +41,14 @@ public class Main_Manager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        // Initialize pots: only Pot 1 is unlocked at the start
+        if (potsUnlocked[0] == false) // Only set if not already loaded from save
+        {
+            potsUnlocked[0] = true;
+            for (int i = 1; i < potsUnlocked.Length; i++)
+                potsUnlocked[i] = false;
+        }
     }
 
     void Start()
@@ -89,4 +100,13 @@ public class Main_Manager : MonoBehaviour
         }
         return null;
     }
+
+    // Call this when a pot is bought in the market
+    public void UnlockPot(int potIndex)
+    {
+        if (potIndex >= 0 && potIndex < potsUnlocked.Length)
+            potsUnlocked[potIndex] = true;
+    }
+
+    // Optional: Save/Load logic can be added here later
 }
