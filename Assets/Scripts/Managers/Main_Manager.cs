@@ -2,6 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System;
 
 [System.Serializable]
 public class PlantData
@@ -14,6 +17,14 @@ public class PlantData
     public int fertilizerCount;
     public bool isReqTaken;
     public int potID;
+}
+
+[Serializable]
+public class SaveData
+{
+    public int gameGold;
+    public bool[] potsUnlocked;
+    public List<PlantData> plantDataList;
 }
 
 public class Main_Manager : MonoBehaviour
@@ -71,7 +82,7 @@ public class Main_Manager : MonoBehaviour
     public void StorePlantData()
     {
         plantDataDict.Clear();
-        Plant_Base[] allPlants = Object.FindObjectsByType<Plant_Base>(FindObjectsSortMode.None);
+        Plant_Base[] allPlants = UnityEngine.Object.FindObjectsByType<Plant_Base>(FindObjectsSortMode.None);
         foreach (var plant in allPlants)
         {
             if (plant.owner != null)
@@ -108,5 +119,54 @@ public class Main_Manager : MonoBehaviour
             potsUnlocked[potIndex] = true;
     }
 
-    // Optional: Save/Load logic can be added here later
+    public void SaveGame()
+    {
+        StorePlantData(); // Ensure latest data is stored
+        SaveData data = new SaveData
+        {
+            gameGold = gameGold,
+            potsUnlocked = potsUnlocked,
+            plantDataList = plantDataDict.Values.ToList()
+        };
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(Application.persistentDataPath + "/savegame.json", json);
+        Debug.Log("Game Saved!");
+    }
+
+    public bool LoadGame()
+    {
+        string path = Application.persistentDataPath + "/savegame.json";
+        if (!File.Exists(path))
+            return false;
+
+        string json = File.ReadAllText(path);
+        SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+        gameGold = data.gameGold;
+        potsUnlocked = data.potsUnlocked;
+        plantDataDict = data.plantDataList.ToDictionary(p => p.potID, p => p);
+
+        Debug.Log("Game Loaded!");
+        return true;
+    }
+
+    public bool SaveFileExists()
+    {
+        return File.Exists(Application.persistentDataPath + "/savegame.json");
+    }
+
+    public void NewGame()
+    {
+        // Delete save file if it exists
+        string path = Application.persistentDataPath + "/savegame.json";
+        if (File.Exists(path))
+            File.Delete(path);
+
+        // Reset game data to default values
+        gameGold = 0;
+        for (int i = 0; i < potsUnlocked.Length; i++)
+            potsUnlocked[i] = (i == 0); // Only first pot unlocked
+        plantDataDict.Clear();
+        Debug.Log("New Game started. Save file deleted and data reset.");
+    }
 }
