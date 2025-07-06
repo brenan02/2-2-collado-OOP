@@ -185,6 +185,9 @@ MonoBehaviour:
   - groupID: Hover
     clips:
     - {fileID: 8300000, guid: f15565b58bda36f4baf4390ee7402e38, type: 3}
+  - groupID: Water
+    clips:
+    - {fileID: 8300000, guid: 7522562393fb33b4ca2651f2d6a49637, type: 3}
 --- !u!114 &3608311515913470996
 MonoBehaviour:
   m_ObjectHideFlags: 0

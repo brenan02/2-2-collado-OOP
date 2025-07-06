@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Buffers;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ public class Click_Manager : MonoBehaviour
 {
 
     public LayerMask clickableLayer;
-    public Pot_Base selectedPot;
+    public Pot_Base selectedPot; 
 
     public bool isButtonHovered = false;
     

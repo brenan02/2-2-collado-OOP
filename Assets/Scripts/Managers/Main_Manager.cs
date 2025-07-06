@@ -14,7 +14,7 @@ public class PlantData
     public int plantPhase;
     public string plantPhase_String;
     public int waterCount;
-    public int fertilizerCount;
+    //public int fertilizerCount;
     public bool isReqTaken;
     public int potID;
 }
@@ -94,7 +94,7 @@ public class Main_Manager : MonoBehaviour
                     plantPhase = plant.plantPhase,
                     plantPhase_String = plant.plantPhase_String,
                     waterCount = plant.waterCount,
-                    fertilizerCount = plant.fertilizerCount,
+                    //fertilizerCount = plant.fertilizerCount,
                     isReqTaken = plant.isReqTaken,
                     potID = plant.owner.potID
                 };

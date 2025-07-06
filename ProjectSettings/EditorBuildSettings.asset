@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/GARDEN.unity
-    guid: db6793aec81ba0143a5799778d49f3ba
+    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/MarketScene.unity
     guid: 0de42e3f1a0e9404d8e2e1c436c7bcc4

@@ -112,10 +112,8 @@ MonoBehaviour:
   plantPhase: 0
   plantPhase_String: 
   waterReq: 5
-  fertilizerReq: 0
   waterCount: 0
-  fertilizerCount: 0
-  cooldown: 2
+  cooldown: 1
   isReqTaken: 0
   produceValue: 15
   TimeBetweenDelay: 1

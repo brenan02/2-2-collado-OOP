@@ -19,10 +19,10 @@ public class Plant_Base : MonoBehaviour
     public string plantPhase_String;
 
     public int waterReq;
-    public int fertilizerReq;
+    //public int fertilizerReq;
 
     public int waterCount;
-    public int fertilizerCount;
+    //public int fertilizerCount;
 
     public int cooldown;
     public bool isReqTaken;
@@ -59,7 +59,7 @@ public class Plant_Base : MonoBehaviour
                 plantPhase = data.plantPhase;
                 plantPhase_String = data.plantPhase_String;
                 waterCount = data.waterCount;
-                fertilizerCount = data.fertilizerCount;
+                //fertilizerCount = data.fertilizerCount;
                 isReqTaken = data.isReqTaken;
 
                 Debug.Log("Restored plantPhase: " + plantPhase);

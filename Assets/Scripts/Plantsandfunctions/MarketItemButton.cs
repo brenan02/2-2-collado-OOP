@@ -10,6 +10,7 @@ public class MarketItemButton : MonoBehaviour
 
     void Start()
     {
+        //DISABLE LOGIC
         button = GetComponent<Button>();
         if (button != null)
         {
